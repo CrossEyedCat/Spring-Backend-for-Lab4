@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/points")
+@RequestMapping("/points")
 public class PointController {
     private final PointRepository pointRepository;
     private final UserRepository userRepository;
