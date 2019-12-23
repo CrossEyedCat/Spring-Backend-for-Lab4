@@ -26,6 +26,7 @@ public class TokenFilter extends GenericFilterBean {
             Authentication auth = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
+
         filterChain.doFilter(req, res);
     }
 }

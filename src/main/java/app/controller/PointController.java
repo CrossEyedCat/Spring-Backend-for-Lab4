@@ -1,19 +1,20 @@
 package app.controller;
 
+import app.entities.Point;
 import app.model.Graphic;
 import app.repositories.PointRepository;
 import app.repositories.UserRepository;
-import app.entities.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @RestController
-@RequestMapping("/points")
+@RequestMapping("/api/points")
 public class PointController {
     private final PointRepository pointRepository;
     private final UserRepository userRepository;
