@@ -57,6 +57,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/api/points/**").authenticated()
 				.antMatchers(HttpMethod.POST, "/api/points/**").authenticated()
+				.antMatchers(HttpMethod.POST, "/api/users/logout").authenticated()
 				.anyRequest().permitAll()
 				.and()
 				.apply(new SecurityConfigurer(tokenProvider));

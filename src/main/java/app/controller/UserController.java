@@ -68,7 +68,7 @@ public class UserController {
 		try {
 			String username = data.getUsername();
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
-			String token = tokenProvider.createToken(username);
+			String token = tokenProvider.resolveToken(username);
 			return new ResponseEntity<>(new ResponseMessage(token), HttpStatus.OK);
 		} catch (AuthenticationException e) {
 			return new ResponseEntity<>(new ResponseMessage("Wrong user or password"), HttpStatus.UNAUTHORIZED);
@@ -79,9 +79,11 @@ public class UserController {
 	@PostMapping(value = "/logout")
 	public ResponseEntity<ResponseMessage> logout(Principal user) {
 		try {
+			logger.info("user " + user.getName() + " logged out");
 			userService.invalidateToken(user.getName());
 			return new ResponseEntity<>(new ResponseMessage("logout successful"), HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(new ResponseMessage(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
